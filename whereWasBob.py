@@ -15,7 +15,7 @@ def getList(offSet):
         for data in mainData['response']['checkins']['items']:
             if "venue" in data:
                 if len(data["venue"]["categories"]) != 0:
-                    if data["venue"]["categories"][0]["name"] != "Home (private)" and data["createdAt"] > 1451610000: # 1 Jan 2016
+                    if data["venue"]["categories"][0]["name"] != "Home (private)":
                         global nowHere
                         longLatArray.append({
                             "name": data["venue"]["name"],
