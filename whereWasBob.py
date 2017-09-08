@@ -13,11 +13,12 @@ def getList(offSet):
         mainData = json.loads(url.read().decode())
         for data in mainData['response']['checkins']['items']:
             if "venue" in data:
-                if len(data["venue"]["categories"]) != 0 and data["venue"]["categories"][0]["name"] == "Airport":
+                if len(data["venue"]["categories"]) != 0:
                     longLatArray.append({
                         "name": data["venue"]["name"],
                         "lng": data["venue"]["location"]["lng"],
-                        "lat": data["venue"]["location"]["lat"]
+                        "lat": data["venue"]["location"]["lat"],
+                        "type": data["venue"]["categories"][0]["name"]
                     })
     if mainData["response"]["checkins"]["count"] - offSet > 0:
         getList(offSet + 250)
