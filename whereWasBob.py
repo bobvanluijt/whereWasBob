@@ -16,15 +16,16 @@ def getList(offSet):
             if "venue" in data:
                 if len(data["venue"]["categories"]) != 0:
                     if data["venue"]["categories"][0]["name"] != "Home (private)":
-                        global nowHere
-                        longLatArray.append({
-                            "name": data["venue"]["name"],
-                            "lng": data["venue"]["location"]["lng"],
-                            "lat": data["venue"]["location"]["lat"],
-                            "type": data["venue"]["categories"][0]["name"],
-                            "now": nowHere
-                        })
-                        nowHere = False
+                        if "Restaurant" in data["venue"]["categories"][0]["name"] or "Hotel" in data["venue"]["categories"][0]["name"] or "Airport" in data["venue"]["categories"][0]["name"]:
+                            global nowHere
+                            longLatArray.append({
+                                "name": data["venue"]["name"],
+                                "lng": data["venue"]["location"]["lng"],
+                                "lat": data["venue"]["location"]["lat"],
+                                "type": data["venue"]["categories"][0]["name"],
+                                "now": nowHere
+                            })
+                            nowHere = False
 
     if mainData["response"]["checkins"]["count"] - offSet > 0:
         getList(offSet + 250)
