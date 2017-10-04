@@ -92,8 +92,8 @@
         }
         
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <body>
     <div id="map"><!-- Google MAPS --></div>
     <div id="overlay"><!-- Color overlay --></div>
@@ -109,12 +109,37 @@
     'use strict';
 
     /**
+     * Get the URL parameter
+     */
+    var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
+    /**
      * Handle to website
      */ 
     $(".bigB").click(function(){
         var win = window.open("https://bob.wtf", "_blank");
         win.focus();
     });
+
+    /**
+     * Remove the window
+     */
+    if(getUrlParameter("nowindow") == "1"){
+        $("#overlay,#overlayTextBlock").toggle();
+    }
 
     /**
      * Init the Map
