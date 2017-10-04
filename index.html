@@ -156,7 +156,7 @@
                 fillOpacity: 1,
                 optimized: false
             };
-            $.getJSON("http://wherewas.bob.wtf/whereWasBob.json?i=" + Math.random(), function( data ) {            
+            $.getJSON("https://us-central1-where-is-bob-1504861557723.cloudfunctions.net/where-was-bob", function( data ) {            
                 data.forEach(function(val) {
                     //console.log("Create: " + val.type);
                     if(val.now === true){
