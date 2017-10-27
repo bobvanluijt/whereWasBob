@@ -102,7 +102,7 @@
         <h1>Hi there!</h1>
         <h2>My Trips Around the World &#x2708;<br></h2>
         <small>Also checkout my blog: <a href="www.bob.wtf" target="_blank">www.bob.wtf</a></small>
-        <h3>Click anywhere...</h3>
+        <h3>Loading travels...</h3>
     </div>
     <div class="bigB"><!-- B logo --></div>
     <script>
@@ -197,6 +197,26 @@
                         map.setCenter({lat: val.lat, lng: val.lng});
                     }, 400)
                 }
+
+                /**
+                * Remove overlay
+                */
+                $("#overlay,#overlayTextBlock").click(function(){
+                    $("#overlay,#overlayTextBlock").fadeOut("fast");
+                });
+                
+                /**
+                 * Did you forget to click?
+                 */ 
+                $("h3").text("Click anywhere...");
+                
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    $("h3").html( $("h3").text().replace("click", "tab") );
+                }
+
+                if($("#overlay").length){
+                    $("h3").fadeIn("slow");
+                }
                 
                 });
             });
@@ -216,25 +236,6 @@
                 center: {lat: 52.3702, lng: 4.8952}
             });
         }
-
-        /**
-         * Did you forget to click?
-         */ 
-        setTimeout(function(){
-            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-                $("h3").html( $("h3").text().replace("click", "tab") );
-            }
-            if($("#overlay").length){
-                $("h3").fadeIn("slow");
-            }
-        }, 4200);
-
-        /**
-         * Remove overlay
-         */
-        $("#overlay,#overlayTextBlock").click(function(){
-            $("#overlay,#overlayTextBlock").fadeOut("fast");
-        });
 
         /**
          * Load the maps from Foursquare
