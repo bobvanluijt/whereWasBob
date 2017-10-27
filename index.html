@@ -39,7 +39,6 @@
         }
         h3 {
             font-family: 'Lora', serif;
-            display: none;
         }
         #map {
             position: absolute;
@@ -213,10 +212,6 @@
                 
                 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                     $("h3").html( $("h3").text().replace("click", "tab") );
-                }
-
-                if($("#overlay").length){
-                    $("h3").fadeIn("slow");
                 }
                 
                 });
