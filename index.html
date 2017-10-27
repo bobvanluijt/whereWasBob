@@ -193,26 +193,17 @@
                  * Set the map to current location
                  */
                 if(val.now === true){
-                    setTimeout(function(){
+                    setTimeout(function(){ // timeout for UX
                         map.setCenter({lat: val.lat, lng: val.lng});
                     }, 400)
                 }
-
-                /**
-                * Remove overlay
-                */
-                $("#overlay,#overlayTextBlock").click(function(){
-                    $("#overlay,#overlayTextBlock").fadeOut("fast");
-                });
                 
                 /**
-                 * Did you forget to click?
+                 * Fade out
                  */ 
-                $("h3").text("Click anywhere...");
-                
-                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-                    $("h3").html( $("h3").text().replace("click", "tab") );
-                }
+                setTimeout(function(){ // timeout for UX
+                  $("#overlay,#overlayTextBlock").fadeOut("fast");
+                }, 400);
                 
                 });
             });
